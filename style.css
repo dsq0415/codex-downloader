@@ -1,0 +1,635 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: linear-gradient(160deg, #f0f5ff 0%, #fafbff 40%, #fff8f0 100%);
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+body::before {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);
+  top: -120px;
+  right: -100px;
+}
+
+body::after {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.06), transparent 70%);
+  bottom: -150px;
+  left: -120px;
+}
+
+/* ===== 首屏 ===== */
+.hero {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  animation: fadeUp 0.6s ease;
+}
+
+.hero-logo {
+  width: clamp(64px, 8vw, 96px);
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.rename-note {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 48px;
+}
+
+/* 三卡片 */
+.cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px);
+  border-radius: 16px;
+  width: clamp(200px, 18vw, 280px);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card-icon {
+  font-size: clamp(2rem, 2.5vw, 2.8rem);
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+}
+
+.card-sub {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.card-locked {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  cursor: default;
+}
+
+.card-locked .card-desc {
+  color: #999;
+}
+
+.card-locked:hover {
+  transform: none;
+}
+
+.card-active {
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1px solid #fbbf24;
+  cursor: pointer;
+}
+
+.card-active:hover {
+  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.2);
+}
+
+.card-active .card-desc {
+  color: #d97706;
+  font-weight: 500;
+}
+
+/* 验证码输入 */
+.code-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.code-area input {
+  width: 360px;
+  max-width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.code-area input:focus {
+  border-color: #3b82f6;
+}
+
+.code-area input.error {
+  border-color: #ef4444;
+}
+
+#code-btn {
+  padding: 12px 48px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #3b82f6;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#code-btn:hover {
+  background: #2563eb;
+}
+
+#code-btn:active {
+  transform: scale(0.97);
+}
+
+.code-error {
+  color: #ef4444;
+  font-size: 0.85rem;
+}
+
+/* ===== 下载区 ===== */
+.download-section {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  animation: fadeUp 0.5s ease;
+}
+
+.os-hint {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 32px;
+}
+
+.os-hint strong {
+  color: #16a34a;
+}
+
+.download-cards {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dl-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 28px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  width: 320px;
+  transition: box-shadow 0.2s;
+}
+
+.dl-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.dl-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b82f6;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+.dl-icon {
+  font-size: 2.2rem;
+}
+
+.dl-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.dl-card p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.dl-card .manager-fallback {
+  color: #d97706;
+  font-weight: 600;
+}
+
+.dl-btn {
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.dl-btn-main {
+  display: block;
+  width: 100%;
+  padding: 13px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
+  background: #fff;
+}
+
+.dl-btn-main:hover {
+  background: #eff6ff;
+  transform: translateY(-1px);
+}
+
+.dl-btn-sub {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  padding: 4px 0;
+}
+
+.dl-btn-sub:hover {
+  text-decoration: underline;
+}
+
+.ccswitch-tutorial {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  background: #f0fdf4;
+  color: #15803d;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.ccswitch-tutorial a {
+  color: #16a34a;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ccswitch-tutorial a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 魔法上网区 ===== */
+.vpn-section {
+  max-width: 600px;
+  width: 100%;
+  margin-top: 64px;
+  text-align: center;
+}
+
+.vpn-box h2 {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.vpn-lead {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.vpn-highlight {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border: 1px solid #fde68a;
+  border-radius: 20px;
+  padding: 36px 28px;
+}
+
+.vpn-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 12px;
+}
+
+.vpn-price-big {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ea580c;
+  margin-bottom: 20px;
+}
+
+.vpn-btn {
+  display: inline-block;
+  padding: 14px 44px;
+  background: #f97316;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+.vpn-btn:hover {
+  background: #ea580c;
+  transform: scale(1.03);
+}
+
+.vpn-more {
+  font-size: 0.8rem;
+  color: #a8a29e;
+  margin-top: 12px;
+}
+
+/* ===== 教程区 ===== */
+.tutorial-section {
+  max-width: 600px;
+  width: 100%;
+  margin-top: 56px;
+  text-align: center;
+}
+
+.tutorial-box {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 36px 28px;
+}
+
+.tutorial-box h2 {
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.tutorial-box p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.tutorial-btn {
+  display: inline-block;
+  padding: 12px 36px;
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.tutorial-btn:hover {
+  background: #eff6ff;
+}
+
+/* ===== 弹窗 ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.25s ease;
+  padding: 20px;
+}
+
+.modal-box {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  max-width: 440px;
+  width: 100%;
+  animation: scaleIn 0.3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: #f3f4f6;
+  color: #333;
+}
+
+.modal-section {
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.modal-sub {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.modal-divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 20px 0;
+}
+
+.modal-vpn {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border-radius: 12px;
+  padding: 20px 16px;
+  margin: 0 -8px;
+}
+
+.modal-vpn-head {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.modal-vpn p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.modal-vpn-rec {
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.modal-vpn-btn {
+  display: inline-block;
+  padding: 11px 32px;
+  background: #f97316;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+.modal-vpn-btn:hover {
+  background: #ea580c;
+  transform: scale(1.03);
+}
+
+.modal-vpn-more {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 8px;
+}
+
+.modal-tutorial {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #3b82f6;
+  text-decoration: none;
+  padding: 8px 0;
+}
+
+.modal-tutorial:hover {
+  text-decoration: underline;
+}
+
+.modal-confirm {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 40px;
+  font-size: 0.9rem;
+  color: #666;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-confirm:hover {
+  background: #e5e7eb;
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(249, 115, 22, 0); }
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 680px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 100%;
+    max-width: 280px;
+  }
+  .download-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dl-card {
+    width: 100%;
+    max-width: 320px;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+}

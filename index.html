@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex 一键下载</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <img src="favicon.png" alt="Codex" class="hero-logo">
+    <h1>Codex 一键下载</h1>
+    <p class="rename-note">Codex 现已更名为 ChatGPT 桌面版，功能完全一样</p>
+    <p class="subtitle">不需要翻墙 · 下载就能用</p>
+
+    <div class="cards">
+      <div class="card card-locked" id="card-download">
+        <span class="card-icon">📥</span>
+        <span class="card-title">下载 Codex</span>
+        <span class="card-sub">无需翻墙，完整安装包</span>
+        <span class="card-desc">🔒 输入验证码解锁</span>
+      </div>
+      <div class="card card-locked" id="card-tutorial">
+        <span class="card-icon">📖</span>
+        <span class="card-title">使用教程</span>
+        <span class="card-sub">一键入门</span>
+        <span class="card-desc">🔒 输入验证码解锁</span>
+      </div>
+      <a class="card card-active" id="card-vpn" href="https://xn--9kqz23b19z.com/#/register?code=KHsQrlT0" target="_blank">
+        <span class="card-icon">🌐</span>
+        <span class="card-title">魔法上网</span>
+        <span class="card-sub">如果用不了，试试这个</span>
+        <span class="card-desc">✅ 点击查看 →</span>
+      </a>
+    </div>
+
+    <div class="code-area" id="code-area">
+      <input type="text" id="code-input" placeholder="输入验证码，解锁下载和教程" autocomplete="off">
+      <button id="code-btn">解锁</button>
+      <p class="code-error" id="code-error" hidden>验证码不对，看看是不是复制的时候多了空格</p>
+    </div>
+  </section>
+
+  <!-- 下载区（验证后显示） -->
+  <section class="download-section" id="download-section" hidden>
+    <p class="os-hint" id="os-hint"></p>
+
+    <div class="download-cards">
+      <!-- 完整安装包 -->
+      <div class="dl-card">
+        <span class="dl-badge">推荐</span>
+        <span class="dl-icon">📦</span>
+        <h3>完整软件安装包</h3>
+        <p>Codex 的完整安装包。<br>下载后双击安装，打开就能用。</p>
+        <a class="dl-btn dl-btn-main" id="dl-codex-main" href="#">Windows 版下载</a>
+        <a class="dl-btn dl-btn-sub" id="dl-codex-sub" href="#">Mac 版点这里</a>
+        <a class="dl-btn dl-btn-sub dl-btn-sub2" id="dl-codex-sub2" href="#" hidden>Intel Mac 点这个</a>
+      </div>
+
+      <!-- CC Switch（必装） -->
+      <div class="dl-card">
+        <span class="dl-badge">必装</span>
+        <span class="dl-icon">🔄</span>
+        <h3>CC Switch（必装）</h3>
+        <p>光下载 Codex 还不能直接用，<br>还要装 CC Switch 来配置。</p>
+        <a class="dl-btn dl-btn-main" id="dl-ccswitch-main" href="#">Windows 版下载</a>
+        <a class="dl-btn dl-btn-sub" id="dl-ccswitch-sub" href="#">Mac 版点这里</a>
+        <div class="ccswitch-tutorial" id="ccswitch-tutorial" hidden>
+          下载完成后，点这里看教程：
+          <a href="http://xhslink.cn/o/9eIxO7HLcfN" target="_blank">小红书教程 →</a>
+        </div>
+      </div>
+
+      <!-- 下载管理器 -->
+      <div class="dl-card">
+        <span class="dl-icon">🧰</span>
+        <h3>下载管理器</h3>
+        <p>一个帮你下载和更新 Codex 的小工具。<br>以后出新版，用它一键升级就行。</p>
+        <p class="manager-fallback">如果安装包用不了，下载 CC Switch。</p>
+        <a class="dl-btn dl-btn-main" id="dl-manager-main" href="#">Windows 版下载</a>
+        <a class="dl-btn dl-btn-sub" id="dl-manager-sub" href="#">Mac 版点这里</a>
+        <a class="dl-btn dl-btn-sub dl-btn-sub2" id="dl-manager-sub2" href="#" hidden>Intel Mac 点这个</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 魔法上网详细介绍 -->
+  <section class="vpn-section" id="vpn-section">
+    <div class="vpn-box">
+      <h2>⚡ 下载完打不开？别慌，不是坏了</h2>
+      <p class="vpn-lead">Codex 是国外软件，装好之后<strong>必须配合魔法上网才能打开使用</strong>。<br>这不是 bug，是所有国外 AI 软件的共同要求。</p>
+
+      <div class="vpn-highlight">
+        <p class="vpn-name">推荐「良心云」</p>
+        <p class="vpn-price-big">100G 每月2元</p>
+        <a class="vpn-btn" href="https://xn--9kqz23b19z.com/#/register?code=KHsQrlT0" target="_blank">了解一下 →</a>
+        <p class="vpn-more">还有更多划算套餐，进去看看</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教程介绍 -->
+  <section class="tutorial-section" id="tutorial-section" hidden>
+    <div class="tutorial-box">
+      <h2>📖 第一次用？一键入门</h2>
+      <p>从安装到上手，全程图文教学。<br>不需要任何基础，跟着点就行。</p>
+      <a class="tutorial-btn" href="https://codexguide.ai/" target="_blank">查看教程 →</a>
+    </div>
+  </section>
+
+  <!-- 弹窗 -->
+  <div class="modal-overlay" id="modal" hidden>
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close">✕</button>
+
+      <div class="modal-section">
+        <p class="modal-title">✅ 已开始下载，等它下完就行</p>
+        <p class="modal-sub">下载完双击打开就能安装</p>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div class="modal-section modal-vpn">
+        <p class="modal-vpn-head">⚡ 重要提醒</p>
+        <p>Codex 装好之后，<strong>必须配合魔法上网才能打开！</strong><br>不是软件坏了，是它需要科学上网环境。</p>
+        <p class="modal-vpn-rec">推荐「良心云」：<strong>2元/月 · 100G流量 · 打开就能连</strong></p>
+        <a class="modal-vpn-btn" href="https://xn--9kqz23b19z.com/#/register?code=KHsQrlT0" target="_blank">了解一下 →</a>
+        <p class="modal-vpn-more">还有更多划算套餐</p>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div class="modal-section">
+        <a class="modal-tutorial" href="https://codexguide.ai/" target="_blank">📖 第一次用？3 分钟教程看完就会 →</a>
+      </div>
+
+      <button class="modal-confirm" id="modal-confirm">确定</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
